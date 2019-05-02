@@ -16,5 +16,5 @@ def generate_trip_dates(start_date: date, end_date: date, allowed_isoweekdays, e
 
 
 def excluded_dates_from_iso_array(dates_iso):
-    return map(date.fromisoformat, dates_iso)
+    return list(map(date.fromisoformat, dates_iso))
 
