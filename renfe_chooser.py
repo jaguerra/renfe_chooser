@@ -3,14 +3,15 @@ from trip_dates import *
 
 candidate_tickets = [
     CandidateTicket("abono 10", 8, 143.50, 10),
+    CandidateTicket("abono 10 45", 45, 223.40, 10),
     CandidateTicket("abono 30", 30, 500.5, 30),
-    CandidateTicket("abono 32", 30, 500.5, 32),
-    CandidateTicket("abono 34", 30, 515.8, 34),
+    CandidateTicket("abono 32", 30, 515.6, 32),
+    CandidateTicket("abono 34", 30, 531.9, 34),
     CandidateTicket("abono 36", 30, 547.5, 36),
     CandidateTicket("abono 38", 30, 562.7, 38),
     CandidateTicket("abono 40", 30, 578.9, 40),
     CandidateTicket("abono 50", 30, 656.6, 50),
-    CandidateTicket("return", 1, 53.4, 2)
+    CandidateTicket("return", 1, 57.4, 2)
 ]
 
 excluded_dates = [
@@ -56,21 +57,31 @@ trip_dates = generate_trip_dates(
 trip_dates_2 = generate_trip_dates(
     date.fromisoformat("2019-01-01"),
     date.fromisoformat("2019-12-31"),
-    [1, 2, 3, 4, 5],
+    [1, 2, 4],
     excluded_dates_from_iso_array(excluded_dates)
 )
 
 trip_dates_3 = generate_trip_dates(
     date.fromisoformat("2019-01-01"),
     date.fromisoformat("2019-12-31"),
-    [1, 2, 4],
+    [2, 4],
+    excluded_dates_from_iso_array(excluded_dates)
+)
+
+trip_dates_4 = generate_trip_dates(
+    date.fromisoformat("2019-01-01"),
+    date.fromisoformat("2019-12-31"),
+    [2],
     excluded_dates_from_iso_array(excluded_dates)
 )
 
 
+
 print("Set #1 (4 days)")
 Backtrack(trip_dates, candidate_tickets).analyse()
-print("Set #2 (5 days)")
+print("Set #2 (3 days)")
 Backtrack(trip_dates_2, candidate_tickets).analyse()
-print("Set #3 (3 days)")
+print("Set #3 (2 days)")
 Backtrack(trip_dates_3, candidate_tickets).analyse()
+print("Set #4 (1 days)")
+Backtrack(trip_dates_4, candidate_tickets).analyse()
